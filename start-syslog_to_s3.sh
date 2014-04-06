@@ -11,7 +11,7 @@ while true; do
   SYSLOG_S3_ACCESS_KEY=$(etcdctl --peers ${ETCD_PEER} get /config/SYSLOG_S3_ACCESS_KEY | egrep -v "Error: 100: Key not found|Cannot sync with the cluster")
   SYSLOG_S3_SECRET_KEY=$(etcdctl --peers ${ETCD_PEER} get /config/SYSLOG_S3_SECRET_KEY | egrep -v "Error: 100: Key not found|Cannot sync with the cluster")
 
-  /usr/bin/s3cmd -m text/plain sync /var/log/rsyslog/* s3://${SYSLOG_S3_BUCKET}/${INSTANCE_ID}/
+  /usr/bin/s3cmd --access_key=${SYSLOG_S3_ACCESS_KEY} --secret_key=${SYSLOG_S3_SECRET_KEY} -m text/plain sync /var/log/rsyslog/* s3://${SYSLOG_S3_BUCKET}/${INSTANCE_ID}/
 
   sleep $SYSLOG_S3_SYNC_INTERVAL
 done
