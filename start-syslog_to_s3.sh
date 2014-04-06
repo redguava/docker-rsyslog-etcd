@@ -1,7 +1,6 @@
 #!/bin/bash
 
-/etc/init.d/rsyslog start
-
+ETCD_PEER="172.17.42.1:4001"
 INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
 AVAILABILITY_ZONE=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
 
