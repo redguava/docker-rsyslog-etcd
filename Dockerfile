@@ -1,5 +1,6 @@
 FROM redguava/centos
 RUN yum install -y rsyslog
+RUN yum --enablerepo epel-testing install s3cmd
 ADD rsyslog.conf /etc/rsyslog.conf
 ADD supervisord-rsyslog.conf /etc/supervisord.d/rsyslog.conf
 ADD supervisord-syslog_to_s3.conf /etc/supervisord.d/syslog_to_s3.conf
